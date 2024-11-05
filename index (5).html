@@ -1,0 +1,447 @@
+<html>
+ <head>
+  <title>
+   Prince Food Paradise
+  </title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+  <style>
+   body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .admin-section, .billing-section {
+            width: 20%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .menu-section {
+            width: 55%;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .section {
+            margin-bottom: 20px;
+        }
+        .section h2 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            width: 100px;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .item img {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            margin-bottom: 5px;
+        }
+        .item button {
+            margin-top: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .item button:hover {
+            background-color: #45a049;
+        }
+        .billing-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .billing-item button {
+            margin: 0 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .billing-item button:hover {
+            background-color: #45a049;
+        }
+        .total, .pay-bill {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .pay-bill button {
+            margin-right: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .pay-bill button:hover {
+            background-color: #45a049;
+        }
+        .admin-section input, .admin-section button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .admin-section button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .admin-section button:hover {
+            background-color: #45a049;
+        }
+  </style>
+ </head>
+ <body>
+  <h1>
+   Prince Food Paradise
+  </h1>
+  <div class="container">
+   <div class="admin-section">
+    <div class="section">
+     <h2>
+      Administration Management
+     </h2>
+     <div>
+      <h3>
+       Add product/item
+      </h3>
+      <label>
+       Item Name
+      </label>
+      <input id="add-item-name" type="text"/>
+      <label>
+       Item Price
+      </label>
+      <input id="add-item-price" type="number"/>
+      <label>
+       Item Section
+      </label>
+      <input id="add-item-section" type="text"/>
+      <label>
+       Item Image URL
+      </label>
+      <input id="add-item-image" type="text"/>
+      <button onclick="addItem()">
+       Add
+      </button>
+     </div>
+     <div>
+      <h3>
+       Delete Item
+      </h3>
+      <label>
+       Item Name
+      </label>
+      <input id="delete-item-name" type="text"/>
+      <button onclick="deleteItem()">
+       Delete
+      </button>
+     </div>
+     <div>
+      <h3>
+       Update Item
+      </h3>
+      <label>
+       Old Item Name
+      </label>
+      <input id="update-old-item-name" type="text"/>
+      <label>
+       New Item Name
+      </label>
+      <input id="update-new-item-name" type="text"/>
+      <label>
+       Item Price
+      </label>
+      <input id="update-item-price" type="number"/>
+      <button onclick="updateItem()">
+       Update
+      </button>
+     </div>
+    </div>
+   </div>
+   <div class="menu-section">
+    <div class="section">
+     <h2>
+      Tiffin Section
+     </h2>
+     <div class="items" id="tiffin-section">
+      <div class="item" data-name="Dosa" data-price="30">
+       <img alt="Image of Dosa" height="50" src="https://storage.googleapis.com/a1aa/image/IihoufKqHiSQNaGsQTxcpJdKbwjVZQnyPWcFxNSjPJCOkeqTA.jpg" width="50"/>
+       <span>
+        Dosa 30 RS
+       </span>
+       <button onclick="addToCart('Dosa', 30)">
+        Add to cart
+       </button>
+      </div>
+      <div class="item" data-name="Idly" data-price="30">
+       <img alt="Image of Idly" height="50" src="https://storage.googleapis.com/a1aa/image/kZ5tJuEd3BoaOl053gATNJ9K846L491BB6fQcNDteHghI9qTA.jpg" width="50"/>
+       <span>
+        Idly 30 RS
+       </span>
+       <button onclick="addToCart('Idly', 30)">
+        Add to cart
+       </button>
+      </div>
+     </div>
+    </div>
+    <div class="section">
+     <h2>
+      Meals Section
+     </h2>
+     <div class="items" id="meals-section">
+      <div class="item" data-name="Half meals" data-price="30">
+       <img alt="Image of Half meals" height="50" src="https://storage.googleapis.com/a1aa/image/DaZVdJe7zjSkXKfiXhs7Rm5rMmbRznXLjLDH9eQeYeEfGSv6E.jpg" width="50"/>
+       <span>
+        Half meals 30 RS
+       </span>
+       <button onclick="addToCart('Half meals', 30)">
+        Add to cart
+       </button>
+      </div>
+      <div class="item" data-name="Full meals" data-price="50">
+       <img alt="Image of Full meals" height="50" src="https://storage.googleapis.com/a1aa/image/mldHFxoRgip9FNkQHTUL6Xiu73SJZ0vsui3NKJwxpfxPkeqTA.jpg" width="50"/>
+       <span>
+        Full meals 50 RS
+       </span>
+       <button onclick="addToCart('Full meals', 50)">
+        Add to cart
+       </button>
+      </div>
+      <div class="item" data-name="Mint Thali" data-price="40">
+       <img alt="Image of Mint Thali" height="50" src="https://storage.googleapis.com/a1aa/image/nnIKAt6TubY0PtE4TfrXJ342Qfgiuz8dg4fIuzPXqeiJi0rOB.jpg" width="50"/>
+       <span>
+        Mint Thali 40 RS
+       </span>
+       <button onclick="addToCart('Mint Thali', 40)">
+        Add to cart
+       </button>
+      </div>
+     </div>
+    </div>
+    <div class="section">
+     <h2>
+      Fast Food Section
+     </h2>
+     <div class="items" id="fast-food-section">
+      <div class="item" data-name="Gobi Rice" data-price="50">
+       <img alt="Image of Gobi Rice" height="50" src="https://storage.googleapis.com/a1aa/image/SS5RLZxOE0ZcJlCzXcXiwEsxPReRdWwnE3v1yVkoTedeQ6VnA.jpg" width="50"/>
+       <span>
+        Gobi Rice 50 RS
+       </span>
+       <button onclick="addToCart('Gobi Rice', 50)">
+        Add to cart
+       </button>
+      </div>
+      <div class="item" data-name="Mushroom Rice" data-price="50">
+       <img alt="Image of Mushroom Rice" height="50" src="https://storage.googleapis.com/a1aa/image/fbubreYoZaijrEnEB3JkWZL1OFVNpwY329yhHmM0wpbaI9qTA.jpg" width="50"/>
+       <span>
+        Mushroom Rice 50 RS
+       </span>
+       <button onclick="addToCart('Mushroom Rice', 50)">
+        Add to cart
+       </button>
+      </div>
+     </div>
+    </div>
+   </div>
+   <div class="billing-section">
+    <div class="section">
+     <h2>
+      Billing Section
+     </h2>
+     <div id="billing-items">
+     </div>
+     <div class="total">
+      <span>
+       Total
+      </span>
+      <span id="total-amount">
+       0 RS
+      </span>
+     </div>
+     <div class="pay-bill">
+      <button onclick="pay('cash')">
+       Cash
+      </button>
+      <button onclick="pay('scanner')">
+       Scanner
+      </button>
+     </div>
+     <button onclick="printBill()">
+      Print Bill
+     </button>
+    </div>
+   </div>
+  </div>
+  <script>
+   const cart = [];
+   let total = 0;
+
+   function addItem() {
+      const name = document.getElementById("add-item-name").value;
+      const price = parseFloat(document.getElementById("add-item-price").value);
+      const section = document.getElementById("add-item-section").value;
+      const image = document.getElementById("add-item-image").value;
+
+      if (name && price && section && image) {
+          const newItem = document.createElement("div");
+          newItem.className = "item";
+          newItem.setAttribute("data-name", name);
+          newItem.setAttribute("data-price", price);
+          newItem.innerHTML = `<img src="${image}" alt="Image of ${name}" height="50" width="50"/> 
+                               <span>${name} ${price} RS</span>
+                               <button onclick="addToCart('${name}', ${price})">Add to cart</button>`;
+          
+          document.getElementById(`${section.toLowerCase().replace(" ", "-")}-section`).appendChild(newItem);
+
+          // Clear inputs
+          document.getElementById("add-item-name").value = "";
+          document.getElementById("add-item-price").value = "";
+          document.getElementById("add-item-section").value = "";
+          document.getElementById("add-item-image").value = "";
+      } else {
+          alert("Please fill in all fields.");
+      }
+   }
+
+   function deleteItem() {
+      const name = document.getElementById("delete-item-name").value;
+      const sections = ["tiffin", "meals", "fast-food"];
+
+      sections.forEach(section => {
+          const itemDiv = document.querySelector(`#${section}-section .item[data-name="${name}"]`);
+          if (itemDiv) {
+              itemDiv.remove();
+          }
+      });
+
+      // Clear input
+      document.getElementById("delete-item-name").value = "";
+   }
+
+   function updateItem() {
+      const oldName = document.getElementById("update-old-item-name").value;
+      const newName = document.getElementById("update-new-item-name").value;
+      const price = parseFloat(document.getElementById("update-item-price").value);
+      const sections = ["tiffin", "meals", "fast-food"];
+
+      sections.forEach(section => {
+          const itemDiv = document.querySelector(`#${section}-section .item[data-name="${oldName}"]`);
+          if (itemDiv) {
+              if (newName) itemDiv.setAttribute("data-name", newName);
+              if (price) itemDiv.setAttribute("data-price", price);
+              itemDiv.querySelector("span").innerHTML = `${newName || oldName} ${price || itemDiv.getAttribute("data-price")} RS`;
+          }
+      });
+
+      // Clear inputs
+      document.getElementById("update-old-item-name").value = "";
+      document.getElementById("update-new-item-name").value = "";
+      document.getElementById("update-item-price").value = "";
+   }
+
+   function addToCart(name, price) {
+      const itemIndex = cart.findIndex(item => item.name === name);
+
+      if (itemIndex === -1) {
+          cart.push({ name, price, quantity: 1 });
+      } else {
+          cart[itemIndex].quantity += 1;
+      }
+
+      updateCartDisplay();
+   }
+
+   function updateCartDisplay() {
+      const cartItemsDiv = document.getElementById("billing-items");
+      cartItemsDiv.innerHTML = "";
+
+      total = 0;
+
+      cart.forEach(item => {
+          total += item.price * item.quantity;
+          const itemDiv = document.createElement("div");
+          itemDiv.className = "billing-item";
+          itemDiv.innerHTML = `${item.name} (₹${item.price}) x ${item.quantity} 
+                              <button onclick="removeFromCart('${item.name}')">Remove</button>`;
+          cartItemsDiv.appendChild(itemDiv);
+      });
+
+      document.getElementById("total-amount").textContent = total.toFixed(2);
+   }
+
+   function removeFromCart(name) {
+      const itemIndex = cart.findIndex(item => item.name === name);
+
+      if (itemIndex !== -1) {
+          cart[itemIndex].quantity -= 1;
+
+          if (cart[itemIndex].quantity === 0) {
+              cart.splice(itemIndex, 1);
+          }
+      }
+
+      updateCartDisplay();
+   }
+
+   function pay(method) {
+      alert(`Total amount to be paid: ₹${total.toFixed(2)} via ${method}`);
+      // Reset cart after payment
+      cart.length = 0;
+      updateCartDisplay();
+   }
+
+   function printBill() {
+      let bill = "Bill:\n\n";
+      cart.forEach(item => {
+          bill += `${item.name} - ₹${item.price} x ${item.quantity} = ₹${(item.price * item.quantity).toFixed(2)}\n`;
+      });
+      bill += `\nTotal: ₹${total.toFixed(2)}`;
+
+      // Print bill
+      const printWindow = window.open("", "_blank");
+      printWindow.document.write(`<pre>${bill}</pre>`);
+      printWindow.document.close();
+      printWindow.print();
+   }
+  </script>
+ </body>
+</html>
